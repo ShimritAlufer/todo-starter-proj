@@ -3,6 +3,7 @@ export const REMOVE_TODO = 'REMOVE_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 export const ADD_TODO = 'ADD_TODO'
 export const UPDATE_TODO = 'UPDATE_TODO'
+export const CHANGE_TODO_COLOR ='CHANGE_TODO_COLOR'
 
 const initialState = {
     todos: [],
@@ -28,16 +29,16 @@ export function todoReducer(state = initialState, cmd) {
                 ...state,
                 isDone: !state.isDone
             }
-        // case ADD_CAR:
-        //     return {
-        //         ...state,
-        //         cars: [...state.cars, cmd.car]
-        //     }
-        // case UPDATE_CAR:
-        //     return {
-        //         ...state,
-        //         cars: state.cars.map(car => car._id === cmd.car._id ? cmd.car : car)
-        //     }
+        case CHANGE_TODO_COLOR:
+            return {
+                ...state,
+                todos: state.todos.map(todo =>
+                todo._id === cmd.todoId
+                    ? { ...todo, color: cmd.color }
+                    : todo
+                )       
+            }
+       
         
         default:
             return state

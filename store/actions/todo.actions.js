@@ -1,6 +1,6 @@
 import { todoService } from "../../services/todo.service.js";
 import { store } from "../store.js";
-import { SET_TODO, ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_TODO } from "../reducers/todo.reducer.js";
+import { SET_TODO, REMOVE_TODO, TOGGLE_TODO, CHANGE_TODO_COLOR } from "../reducers/todo.reducer.js";
 
 
 export function loadTodos(filterBy){
@@ -37,3 +37,10 @@ export function toggleTodo(todoToSave){
         })
 }
 
+export function changeTodoColor(todoId, color) {
+  return {
+    type: 'CHANGE_TODO_COLOR',
+    todoId,
+    color
+  }
+}

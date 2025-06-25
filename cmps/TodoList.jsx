@@ -1,6 +1,6 @@
 import { TodoPreview } from "./TodoPreview.jsx"
+import { changeTodoColor } from "../store/actions/todo.actions.js"
 const { Link } = ReactRouterDOM
-
 const { useState } = React
 
 export function TodoList({ todos, onRemoveTodo, onToggleTodo }) {
@@ -11,7 +11,7 @@ export function TodoList({ todos, onRemoveTodo, onToggleTodo }) {
         onRemoveTodo(todoId)
         setConfirmDeleteId(null)
     }
-
+    
     return (
         <ul className="todo-list">
             {todos.map(todo =>
