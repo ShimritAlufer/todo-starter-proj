@@ -1,31 +1,29 @@
-const { useState } = React
 const { Link, NavLink } = ReactRouterDOM
 const { useNavigate } = ReactRouter
 
-import { userService } from '../services/user.service.js'
 import { UserMsg } from "./UserMsg.jsx"
 import { LoginSignup } from './LoginSignup.jsx'
 import { showErrorMsg } from '../services/event-bus.service.js'
+const { useSelector, useDispatch } = ReactRedux
 
 
 export function AppHeader() {
     const navigate = useNavigate()
-    const [user, setUser] = useState(userService.getLoggedinUser())
-    
+    const user = useSelector(state => state.userModule.loggedInUser)
+    const dispatch = useDispatch()
+
     function onLogout() {
-        userService.logout()
-            .then(() => {
-                onSetUser(null)
-            })
+        logout()
             .catch((err) => {
                 showErrorMsg('OOPs try again')
             })
     }
 
     function onSetUser(user) {
-        setUser(user)
+        //setUser(user)
         navigate('/')
     }
+    
     return (
         <header className="app-header full main-layout">
             <section className="header-container">
